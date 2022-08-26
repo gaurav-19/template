@@ -35,7 +35,7 @@ function NonDisclosureAgreement() {
 
     const thumbnailViewer = currentStep.map(function (element, index) {
         return (
-            <div className='thumbnail' onClick={() => setStep(index)}>
+            <div className='thumbnail' key={index} onClick={() => setStep(index)}>
                 <p>Step {index + 1}</p>
             </div>)
             ;
@@ -56,11 +56,11 @@ function NonDisclosureAgreement() {
     return (
         <div className='container'>
             <div className='h2'>Non Disclosure Agreement</div>
-            <div class="row">
-                <div class="col-md-3 m-3 bg-light">
+            <div className="row">
+                <div className="col-md-3 m-3 bg-light">
                     {thumbnailViewer}
                 </div>
-                <div class="col-md-7 m-3 bg-light">
+                <div className="col-md-7 m-3 bg-light">
                     {currentStep[step].component}
                     {step > 0 &&
                         <button className="btn btn-outline-dark" onClick={goToPrevStep}>Back</button>}
