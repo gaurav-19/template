@@ -13,17 +13,17 @@ function NewMain() {
                 {
                     cid: 2,
                     title: "Name",
-                    value: "gaurav",
+                    type: "text"
                 },
                 {
                     cid: 3,
                     title: "Email",
-                    value: "gaurav@gmail.com"
+                    type: "email"
                 },
                 {
                     cid: 5,
                     title: "Mobile",
-                    value: "8126670341"
+                    type: "number"
                 },
             ]
         },
@@ -33,17 +33,17 @@ function NewMain() {
                 {
                     cid: 2,
                     title: "City",
-                    value: "Bulandshahr",
+                    type: "checkbox"
                 },
                 {
                     cid: 3,
                     title: "State",
-                    value: "Uttar Pradesh"
+                    type: "password"
                 },
                 {
                     cid: 5,
                     title: "Country",
-                    value: "India"
+                    type: "textarea"
                 },
             ]
         }
@@ -51,7 +51,7 @@ function NewMain() {
 
     var component = doc[step].fields.map(element => {
         return (
-            <FormComponent key={element.cid} placeholder={element.title} value={element.value} />
+            <FormComponent key={element.cid} placeholder={element.title} type={element.type}/>
         )
     });
 
