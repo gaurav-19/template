@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import FormComponent from "./FormComponent";
+import customerData from "./data/customerData";
+import SubmittedFormDisplay from "./SubmittedFormDisplay";
 
 function NewMain() {
 
@@ -8,40 +10,40 @@ function NewMain() {
 
     var doc = [
         {
-            _id: 101,
+            _pageId: 101,
             fields: [
                 {
-                    cid: 2,
+                    id: 2,
                     title: "Name",
                     type: "text"
                 },
                 {
-                    cid: 3,
+                    id: 3,
                     title: "Email",
                     type: "email"
                 },
                 {
-                    cid: 5,
+                    id: 5,
                     title: "Mobile",
                     type: "number"
                 },
             ]
         },
         {
-            _id: 102,
+            _pageId: 102,
             fields: [
                 {
-                    cid: 2,
+                    id: 6,
                     title: "City",
                     type: "checkbox"
                 },
                 {
-                    cid: 3,
+                    id: 7,
                     title: "State",
                     type: "password"
                 },
                 {
-                    cid: 5,
+                    id: 8,
                     title: "Country",
                     type: "textarea"
                 },
@@ -75,6 +77,25 @@ function NewMain() {
         });
     }
 
+    function onSubmit(){
+        var reslutForm = []; 
+
+        doc.forEach(d => {
+            d.fields.forEach(field => {
+                var result = customerData.find(element => element._id === field.id);
+
+                if(result){
+                    reslutForm.push( 
+                        { title: field.title,
+                        value: result.value }
+                     );
+                }
+
+            });
+    });
+        console.log(reslutForm);
+    }
+
     return (
         <div className="container">
             <div className="row">
@@ -95,7 +116,7 @@ function NewMain() {
                     {step < doc.length - 1 &&
                         <button className="btn btn-primary" onClick={goToNextStep}>Next</button>}
                     {step === doc.length - 1 &&
-                        <button className="btn btn-success" onClick={() => alert('Submitted!')}>Submit</button>}
+                        <button className="btn btn-success" onClick={ onSubmit }>Submit</button>}
 
                 </div>
             </div>
